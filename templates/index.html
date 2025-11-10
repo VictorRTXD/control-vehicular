@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Control Vehicular</title>
+</head>
+<body>
+  <h1>🚗 Control Vehicular - Reconocimiento de Placas</h1>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <label>Sube la imagen de la placa:</label>
+    <input type="file" name="file" accept="image/*" required>
+    <button type="submit">Procesar</button>
+  </form>
+  <hr>
+  <h2>📋 Vehículos Registrados</h2>
+  <table border="1">
+    <tr><th>ID</th><th>Placa predicha</th><th>Estado</th><th>Entrada</th><th>Salida</th><th>Imagen</th></tr>
+    {% for v in vehiculos %}
+    <tr>
+      <td>{{ v.id }}</td>
+      <td>{{ v.predicted_plate }}</td>
+      <td>{{ v.state }}</td>
+      <td>{{ v.entry_time }}</td>
+      <td>{{ v.exit_time }}</td>
+      <td>
+        {% if v.image_path %}
+          <a href="{{ v.image_path }}" target="_blank">
+            <img src="{{ v.image_path }}" width="140">
+          </a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
