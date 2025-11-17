@@ -1,0 +1,7 @@
+path: /content/drive/MyDrive/YOLOv8/dataset
+train: train/images
+val: valid/images
+
+nc: 1
+names:
+  0: licence
